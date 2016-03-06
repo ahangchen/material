@@ -1,0 +1,74 @@
+button {
+    margin-left: 20px;
+    height: 40px;
+    width: 65px;
+    font-size: 15px;
+    background-color: white;
+    box-shadow: 0 0 15px #666;
+    border: 0;
+}
+
+* {
+    font-size: 15px;
+}
+
+
+label {
+    color: gray;
+    font-size: 15px;
+}
+
+.title_wrap {
+    width: 420px;
+    margin: 10px auto;
+}
+
+.content_wrap {
+    width: 420px;
+    margin: 10px auto;
+}
+
+textarea {
+    margin-top:10px;
+    padding: 10px;
+}
+
+.button_wrap {
+    width: 420px;
+    height: 60px;
+    margin: 10px auto;
+}
+
+button {
+    float: right;
+    margin-right: 20px;
+}
+
+.time_container {
+    width: 420px;
+    margin: 5px auto;
+}
+
+.time_wrap {
+    padding: 5px 5px 0 0;
+
+}
+
+.time_label {
+    margin: 5px 2px 0 2px;
+}
+
+.time_input {
+    width: 30px;
+    margin: 5px 0 0 0;
+}
+
+.table_title {
+    width: 80px;
+    color: darkorange;
+    margin: 10px 0;
+    padding: 5px 5px 5px 0;
+    font-size: 19px;
+    border-bottom: solid orange 2px;
+    word-break: keep-all;
+}

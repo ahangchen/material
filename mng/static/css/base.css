@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Lantinghei SC", "Microsoft Yahei", 宋体, Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    color: #444;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+li, ul, img, a, div {
+    border: 0;
+    list-style: none;
+}
+
+div {
+    display: block;
+}
+
+a {
+    color: #333333;
+    text-decoration: none;
+    outline: none;
+}
+
+em {
+    font-weight: normal;
+}
+
+.click_label {
+    background-color: transparent;
+    border-width:0;
+    color: orange;
+    font-size: 15px;
+}
+
+.important_click_label {
+    background-color: transparent;
+    border-width:0;
+    color: red;
+    font-size: 15px;
+}
+
+.unimportant_click_label {
+    background-color: transparent;
+    border-width:0;
+    color: cornflowerblue;
+    font-size: 15px;
+}
+
+
+

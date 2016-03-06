@@ -1,0 +1,44 @@
+table {
+    margin: 20px auto;
+    background-color: white;
+    box-shadow: 0 0 15px #aaa;
+    width: 500px;
+
+    text-align: center;
+    padding: 10px;
+}
+
+td {
+    font-size: 15px;
+    color: #334333;
+    padding: 5px;
+}
+
+.table-head {
+    color: darkgoldenrod;
+    padding-bottom: 10px
+}
+
+label {
+    margin: 10px;
+    font-size: 17px;
+    color: orange;
+}
+
+.btn_back {
+    margin: 10px auto;
+    background-color: darkorange;
+    box-shadow: 0 0 15px #aaa;
+    width: 100px;
+    padding:7px;
+    font-size:17px;
+    border-width: 0;
+    text-align: center;
+    color: white;
+}
+
+.content-wrap {
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+}

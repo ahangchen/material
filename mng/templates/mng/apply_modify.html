@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>修改记录</title>
+    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/apply.css">
+    <script src="../../static/js/apply.js" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <form action="{% url 'mng:save_modify' apply.id%}" onsubmit="return checkParam()" method="post" style="height: 100%">
+        <div class="main">
+            {% csrf_token %}
+            <div class="apply-content">
+                <div class="table_title">活动信息</div>
+                <table>
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="act_name">活动名称</label>
+                        </td>
+                        <td>
+                            <input type="text" name="act_name" id="act_name" onfocus="highLight(this)"
+                                   value="{{ apply.act_name }}"/>
+                        </td>
+                    </tr>
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="applicant">负责人</label>
+                        </td>
+                        <td>
+                            <input type="text" name="applicant" id="applicant" onfocus="highLight(this)"
+                                   value="{{ apply.applicant }}"/>
+                        </td>
+                    </tr>
+
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="tel">联系方式</label>
+                        </td>
+                        <td>
+                            <input type="text" id="tel" name="tel" onfocus="highLight(this)" value="{{ apply.tel }}"/>
+                        </td>
+                    </tr>
+
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="apply_org">申请单位</label>
+                        </td>
+                        <td>
+                            <input type="text" id="apply_org" name="apply_org" onfocus="highLight(this)"
+                                   value="{{ apply.apply_org }}"/>
+                            <select id="priority" name="priority" onfocus="highLight(this)">
+                                <option value="1">普通</option>
+                                <option value="2">特殊</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="assistant">审批人</label>
+                        </td>
+                        <td>
+                            <input type="text" id="assistant" name="assistant" onfocus="highLight(this)"
+                            value="{{ apply.assistant }}"/>
+                        </td>
+                    </tr>
+                </table>
+                <div class="table_title">物资信息</div>
+                <table id="material">
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="chair_num">胶凳</label>
+                        </td>
+                        <td>
+                            <input type="text" id="chair_num" name="chair_num" onfocus="highLight(this)"
+                                   value="{{ apply.char_num }}"/>
+                        </td>
+                        <td>
+                            <label for="desk_num">桌子</label>
+                        </td>
+                        <td>
+                            <input type="text" id="desk_num" name="desk_num" onfocus="highLight(this)"
+                                   value="{{ apply.desk_num }}"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="tent_num">帐篷</label>
+                        </td>
+                        <td>
+                            <input type="text" id="tent_num" name="tent_num" onfocus="highLight(this)"
+                                   value="{{ apply.tent_num }}"/>
+                        </td>
+                        <td>
+                            <label for="umbrella_num">太阳伞</label>
+                        </td>
+                        <td>
+                            <input type="text" id="umbrella_num" name="umbrella_num" onfocus="highLight(this)"
+                                   value="{{ apply.umbrella_num }}"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="red_num">红布</label>
+                        </td>
+                        <td>
+                            <input type="text" id="red_num" name="red_num" onfocus="highLight(this)"
+                                   value="{{ apply.red_num }}"/>
+                        </td>
+                        <td>
+                            <label for="cloth_num">展架</label>
+                        </td>
+                        <td>
+                            <input type="text" id="cloth_num" name="cloth_num" onfocus="highLight(this)"
+                                   value="{{ apply.cloth_num }}"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="loud_num">扩音器</label>
+                        </td>
+                        <td>
+                            <input type="text" id="loud_num" name="loud_num" onfocus="highLight(this)"
+                                   value="{{ apply.loud_num }}"/>
+                        </td>
+                        <td>
+                            <label for="sound_num">音响</label>
+                        </td>
+                        <td>
+                            <input type="text" id="sound_num" name="sound_num" onfocus="highLight(this)"
+                                   value="{{ apply.sound_num }}"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="projector">投影仪</label>
+                        </td>
+                        <td>
+                            <input type="text" id="projector" name="projector" onfocus="highLight(this)"
+                                   value="{{ apply.projector }}"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="apply-content">
+                <div class="table_title">活动时间</div>
+                <div class="add_time" onclick="addLi()">
+                    ＋
+                </div>
+                <div class="ul_wrap" style="height: 80%">
+                    <ul>
+                        {% for apply_time in apply.rap.all %}
+                            <li>
+                                <input class="year_time_input" name="li_year_{{ forloop.counter}}"
+                                       id="li_year_{{ forloop.counter }}" value="{{ apply_time.year }}">
+                                <label class="year_time_input">年</label>
+                                <input class="time_input" name="li_month_{{ forloop.counter }}"
+                                       id="li_month_{{ forloop.counter }}" value="{{ apply_time.month }}">
+                                <label class="time_label">月</label>
+                                <input class="time_input" name="li_day_{{ forloop.counter }}"
+                                       id="li_day_{{ forloop.counter }}" value="{{ apply_time.day }}">
+                                <label class="time_label">日</label>
+                                <button class="remove_time" onclick="rmSelf(this)">-</button>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+            </div>
+            <button type="submit" class="btn_done">
+                修改
+            </button>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

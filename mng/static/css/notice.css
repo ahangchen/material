@@ -1,0 +1,32 @@
+.notice_wrap {
+    width: 100%;
+    padding: 15px;
+    font-size: 15px;
+    color: grey;
+}
+
+.page_wrap {
+    padding: 5px;
+    font-size: 15px;
+    color: grey;
+    text-align: center;
+    margin-top: 20px;
+    border-bottom: solid orange 2px;
+}
+
+a {
+    color: orange;
+}
+
+textarea {
+    padding:5px;
+    width: 100%;
+}
+
+.notice_wrap a,button {
+    float: right;
+}
+
+.edit_wrap a,button {
+    margin-left: 20px;
+}

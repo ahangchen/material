@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>通知</title>
+    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/notice.css">
+    <script src="../../static/js/notice.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="page_wrap">
+    {% if notice_pages.has_previous %}
+        <a href="{% url 'mng:get_notice' notice_pages.previous_page_number %}">上一页</a>
+    {% endif %}
+    {# topics.paginator.number_pages 返回总页数 #}
+    第{{ notice_pages.number }}页
+    {% if notice_pages.has_next %}
+        <a href="{% url 'mng:get_notice' notice_pages.next_page_number %}">下一页</a>
+
+    {% endif %}
+    共{{ notice_pages.paginator.num_pages }}页
+</div>
+{% for notice in notice_pages.object_list %}
+    <div class="notice_wrap">
+        <div>
+            <p>- {{ notice.content }}</p>
+            <a href="#" onclick="edit_notice(this)" class="click_label">编辑</a>
+        </div>
+        <div style="display: none">
+            <form action="{% url 'mng:modify_notice' notice.id %}" method="post">
+                {% csrf_token %}
+                <textarea name="content" rows="3">{{ notice.content }}</textarea>
+                <div class="edit_wrap">
+                    <a href="#" onclick="remove_notice({{ notice.id }})" class="important_click_label">
+                        删除
+                    </a>
+                    <a href="#" onclick="quit_edit(this)" class="unimportant_click_label">取消</a>
+                    <button type="submit" class="click_label">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endfor %}
+</body>
+</html>

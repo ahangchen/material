@@ -1,0 +1,13 @@
+div {
+    text-align: center;
+    height: 100%;
+    font-size: 15px;
+}
+a {
+    font-size: 15px;
+    color: orange;
+}
+.tip {
+    padding-top: 25%;
+    color: #334333;
+}

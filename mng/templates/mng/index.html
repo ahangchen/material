@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>校园活动物资管理系统</title>
+    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/index.css">
+    <script src="../../static/js/index.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="v-bar">
+    <div class="v-bar-logo">
+        <img src="../../static/img/xgb.jpg" alt="学工办" title="团工委"/>
+        <div>学工办·团工委</div>
+    </div>
+    <div class="v-bar-nav">
+        <ul>
+            <li id="view_material" onclick="view(event)">
+                <a href="#">
+                    物资一览
+                </a>
+            </li>
+            <li id="apply_material" class="active" onclick="apply(event)">
+                <a href="#">
+                    物资申请
+                </a>
+            </li>
+            <li id="faq" onclick="faq(event)">
+                <a href="#">
+                    常见问题
+                </a>
+            </li>
+            <li id="download" onclick="download(event)">
+                <a href="#">
+                    常用文档
+                </a>
+            </li>
+{#            <li id="publish" onclick="publish(event)">#}
+{#                <a href="#">#}
+{#                    发布通知#}
+{#                </a>#}
+{#            </li>#}
+            <li id="setting" onclick="setting(event)">
+                <a href="#">
+                    设置
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="main">
+
+    <div class="main-header">
+        校园活动物资管理系统
+    </div>
+    <!--消除左上灰色边缘-->
+    <iframe id="content-frame" name="content_frame" class="main-content" frameborder="0" src="{% url 'mng:apply'%}"></iframe>
+    <div class="notice">
+        <div class="notice_head"><a class="click_label" href="{% url 'mng:publish' %}" target="content_frame">Publish</a></div>
+        <iframe id="notice_content" name="notice_content" class="notice_content" frameborder="0" src="{% url 'mng:get_notice' 1 %}"></iframe>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,127 @@
+
+.v-bar {
+    background-color: #222222;
+    width: 200px;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+    float: left;
+}
+
+.v-bar-logo {
+    width: 100%;
+    float: left;
+    padding-left: 10px;
+    padding-top: 8px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.v-bar-logo * {
+    display: inline;
+}
+
+.v-bar-logo img {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+}
+
+.v-bar-logo div {
+    font-size: 15px;
+    color: aliceblue;
+}
+
+.v-bar-nav * {
+    width: 100%;
+    float: left;
+}
+
+.v-bar-nav li {
+
+}
+
+.v-bar-nav li a {
+    height: 60px;
+    color: #dadada;
+    font-size: 14px;
+    display: inline-block;
+    line-height: 30px;
+    horiz-align: left;
+    padding: 15px 15px;
+}
+
+.v-bar-nav li.active {
+    background: #393333;
+}
+
+.v-bar-nav li a:hover {
+    background: #333333;
+}
+
+.main {
+    background-color: #efefef;
+    width: auto;
+    min-width: 400px;
+    height: 100%;
+    margin-left: 200px;
+    overflow-y: auto;
+    /*使得content部分不被header遮住*/
+    position: relative;
+    padding-top: 60px;
+}
+
+.main-header {
+    width: 100%;
+    height: 60px;
+    position: absolute; /*固定在上面*/
+    top: 0;
+    left: 0;
+    background-color: darkorange;
+    color: #fff;
+    text-align: right;
+    padding-right: 20px;
+    line-height: 60px;
+    font-size: 15px;
+}
+
+.main-content {
+    width: 80%;
+    height: 100%;
+    padding: 20px auto 20px auto;
+    overflow: hidden;
+}
+
+.notice {
+    width: 20%;
+    height: 100%;
+    float: right;
+    background-color: white;
+    position: relative;
+    padding-top: 0;
+    box-shadow: -5px 0 15px #aaa;
+}
+
+.notice_head {
+    width:100%;
+    position: absolute; /*固定在上面*/
+    bottom: 0;
+    left: 0;
+    background-color: orange;
+    padding: 15px 15px 5px 15px;
+    height: 50px;
+}
+
+.notice_content {
+    width: 100%;
+    height: 100%;
+    padding: 5px 10px 10px 20px;
+}
+
+.notice_head a {
+    color: white;
+    font-size: 20px;
+}

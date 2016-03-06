@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>物资申请</title>
+    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/apply.css">
+    <script src="../../static/js/apply.js" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <form action="{% url 'mng:save_apply' %}" onsubmit="return checkParam()" method="post" style="height: 100%">
+        <div class="main">
+            {% csrf_token %}
+            <div class="apply-content">
+                <div class="table_title">活动信息</div>
+                <table>
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="act_name">活动名称</label>
+                        </td>
+                        <td>
+                            <input type="text" name="act_name" id="act_name" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="applicant">负责人</label>
+                        </td>
+                        <td>
+                            <input type="text" name="applicant" id="applicant" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="tel">联系方式</label>
+                        </td>
+                        <td>
+                            <input type="text" id="tel" name="tel" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="apply_org">申请单位</label>
+                        </td>
+                        <td>
+                            <input type="text" id="apply_org" name="apply_org" onfocus="highLight(this)"/>
+                            <select id="priority" name="priority" onfocus="highLight(this)">
+                                <option value="1">普通</option>
+                                <option value="2">特殊</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="input_wrap">
+                        <td>
+                            <label for="assistant">审批人</label>
+                        </td>
+                        <td>
+                            <input type="text" id="assistant" name="assistant" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+                </table>
+                <div class="table_title">物资信息</div>
+                <table id="material">
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="chair_num">胶凳</label>
+                        </td>
+                        <td>
+                            <input type="text" id="chair_num" name="chair_num" onfocus="highLight(this)"/>
+                        </td>
+                        <td>
+                            <label for="desk_num">桌子</label>
+                        </td>
+                        <td>
+                            <input type="text" id="desk_num" name="desk_num" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="tent_num">帐篷</label>
+                        </td>
+                        <td>
+                            <input type="text" id="tent_num" name="tent_num" onfocus="highLight(this)"/>
+                        </td>
+                        <td>
+                            <label for="umbrella_num">太阳伞</label>
+                        </td>
+                        <td>
+                            <input type="text" id="umbrella_num" name="umbrella_num" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="red_num">红布</label>
+                        </td>
+                        <td>
+                            <input type="text" id="red_num" name="red_num" onfocus="highLight(this)"/>
+                        </td>
+                        <td>
+                            <label for="cloth_num">展架</label>
+                        </td>
+                        <td>
+                            <input type="text" id="cloth_num" name="cloth_num" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="loud_num">扩音器</label>
+                        </td>
+                        <td>
+                            <input type="text" id="loud_num" name="loud_num" onfocus="highLight(this)"/>
+                        </td>
+                        <td>
+                            <label for="sound_num">音响</label>
+                        </td>
+                        <td>
+                            <input type="text" id="sound_num" name="sound_num" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+                    <tr class="material_wrap">
+                        <td>
+                            <label for="projector">投影仪</label>
+                        </td>
+                        <td>
+                            <input type="text" id="projector" name="projector" onfocus="highLight(this)"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="apply-content">
+                <div class="table_title">活动时间</div>
+                <div class="time_change" id="interval_btn" onclick="changeIntervalMode()">
+                    周
+                </div>
+                <div id="time_interval_day" class="time_interval">
+                    <div class="time_wrap">
+                        <label>起始时间</label>
+                        <input class="time_input" id="start_year" type="text" name="start_year" style="width: 40px;"
+                               onfocus="highLight(this)"/>
+                        <label class="time_label" for="start_year">年</label>
+                        <input class="time_input" id="start_month" type="text" name="start_month"
+                               onfocus="highLight(this)"/>
+                        <label class="time_label" for="start_month">月</label>
+                        <input class="time_input" id="start_day" type="text" name="start_day"
+                               onfocus="highLight(this)"/>
+                        <label class="time_label" for="start_day">日</label>
+                    </div>
+                    <div class="time_wrap">
+                        <label>结束时间</label>
+                        <input class="time_input" id="end_year" type="text" name="end_year" style="width: 40px;"
+                               onfocus="highLight(this)"/>
+                        <label class="time_label" for="end_year">年</label>
+                        <input class="time_input" id="end_month" type="text" name="end_month"
+                               onfocus="highLight(this)"/>
+                        <label class="time_label" for="end_month">月</label>
+                        <input class="time_input" id="end_day" type="text" name="end_day" onfocus="highLight(this)"/>
+                        <label class="time_label" for="end_day">日</label>
+                    </div>
+                </div>
+                <div id="time_interval_week" class="time_interval" style="display:none">
+                    <div class="time_wrap">
+                        <label for="start_week">起始周</label>
+                        <input class="time_input" id="start_week" type="text" name="start_week"/>
+                        <label for="end_week">结束周</label>
+                        <input class="time_input" id="end_week" type="text" name="end_week"/>
+                    </div>
+                    <div class="time_wrap">
+                        <label for="week_num">每周</label>
+                        <select id="week_num" name="week_num">
+                            <option value="1">一</option>
+                            <option value="2">二</option>
+                            <option value="3">三</option>
+                            <option value="4">四</option>
+                            <option value="5">五</option>
+                            <option value="6">六</option>
+                            <option value="7">天</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table_title">其他时间</div>
+                <div class="add_time" onclick="addLi()">
+                    ＋
+                </div>
+                <div class="ul_wrap">
+                    <ul>
+                    </ul>
+                </div>
+
+            </div>
+            <button type="submit" class="btn_done">
+                完成
+            </button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+table {
+    margin: 20px 20px;
+    background-color: white;
+    box-shadow: 0 0 15px #aaa;
+    float: left;
+    text-align: center;
+    padding: 10px;
+}
+
+td {
+    color: #666;
+    font-size: 15px;
+    padding: 5px;
+}
+
+.main {
+    width: 760px;
+    margin: 10px auto;
+}
+.table_title {
+    color: darkorange;
+}
+
+.applies {
+    clear:both;
+    width: 585px;
+}
+
+.apply_detail {
+    border-top: dotted orange 2px;
+    box-shadow: none;
+    font-size: 15px;
+    clear: both;
+    width: 100%;
+    margin:0;
+    padding:0;
+    border-collapse: collapse;
+}
+.apply_detail td {
+    color: #666;
+}
+
+.divider{
+    color: orange;
+    text-align: center;
+}
+.td_divider {
+    border-bottom: solid darkseagreen 2px;
+    padding:0;
+    height: 1px;
+}

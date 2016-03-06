@@ -1,0 +1,42 @@
+
+label {
+    color: #333353;
+    font-size: 15px;
+    margin: 5px 10px 0 10px;
+}
+
+input {
+    margin: 5px 2px 0 2px;
+    width: 50px;
+    font-size: 14px;
+    padding: 3px;
+    border-radius: 5px;
+    border: 1px solid #D4D4D4;
+    box-shadow: inset 0 2px 5px #eee;
+    color: #787878;
+}
+
+table {
+    margin: 5px 0;
+    padding: 10px;
+}
+
+
+.time_label {
+    margin: 5px 2px 0 2px;
+}
+
+.time_input {
+    width: 30px;
+    margin: 5px 0 0 0;
+}
+
+button {
+    margin-left: 20px;
+    height: 30px;
+    width: 60px;
+    font-size: 15px;
+    background-color: white;
+    box-shadow: 0 0 15px #666;
+    border:0;
+}

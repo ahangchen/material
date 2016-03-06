@@ -1,0 +1,28 @@
+div {
+    width: 100%;
+    padding: 15px;
+
+}
+.rule-img {
+    width: 50%;
+    margin: 15px 5px;
+}
+
+.question_wrap {
+    box-shadow: 5px 5px 5px #aaa;
+    width: 80%;
+    margin: 30px;
+    background-color: white;
+    padding: 10px;
+}
+
+.question {
+    color: darkorange;
+    font-size: 18px;
+}
+
+.answer {
+    color: #666;
+    font-size: 15px;
+    padding:7px 20px;
+}

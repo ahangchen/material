@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>设置</title>
+    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/setting.css">
+    <script src="../../static/js/setting.js" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <form action="{% url 'mng:save_setting' %}" method="post">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label>本学期第一天(周一)</label></td>
+                <td>
+                    <input id="zero_year" name="zero_year" value="{{ zero_year }}"/>
+                    <label class="time_label" for="zero_year">年</label>
+                    <input id="zero_month" name="zero_month" value="{{ zero_month }}"/>
+                    <label class="time_label" for="zero_month">月</label>
+                    <input id="zero_day" name="zero_day" value="{{ zero_day }}"/>
+                    <label class="time_label" for="zero_day">日 (以周一为每周第一天)</label>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="desk_max">桌子上限</label></td>
+                <td><input id="desk_max" name="desk_max" value="{{ desk_max }}"/></td>
+            </tr>
+            <tr>
+                <td><label for="tent_max">帐篷上限</label></td>
+                <td><input id="tent_max" name="tent_max" value="{{ tent_max }}"/></td>
+            </tr>
+            <tr>
+                <td><label for="umbrella_max">太阳伞上限</label></td>
+                <td><input id="umbrella_max" name="umbrella_max" value="{{ umbrella_max }}"/></td>
+            </tr>
+            <tr>
+                <td><label for="red_max">红布上限</label></td>
+                <td><input id="red_max" name="red_max" value="{{ red_max }}"/></td>
+            </tr>
+            <tr>
+                <td><label for="cloth_max">展架上限</label></td>
+                <td><input id="cloth_max" name="cloth_max" value="{{ cloth_max }}"/></td>
+            </tr>
+            <tr>
+                <td><label for="loud_max">扩音器上限</label></td>
+                <td><input id="loud_max" name="loud_max" value="{{ loud_max }}"/></td>
+            </tr>
+            <tr>
+                <td><label for="sound_max">音响上限</label></td>
+                <td><input id="sound_max" name="sound_max" value="{{ sound_max }}"/></td>
+            </tr>
+            <tr>
+                <td><label for="projector_max">投影仪上限</label></td>
+                <td><input id="projector_max" name="projector_max" value="{{ projector_max }}"/></td>
+            </tr>
+        </table>
+        <button type="submit">确定</button>
+    </form>
+</div>
+</body>
+</html>
