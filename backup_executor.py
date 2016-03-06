@@ -10,3 +10,5 @@ def listen_backup():
         if validate_db_change('db.sqlite3', change_interval):
             backup_db()
         time.sleep(validate_interval)
+
+listen_backup()
