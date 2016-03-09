@@ -52,6 +52,11 @@ function setting(e) {
     changeContent("setting");
 }
 
+function export_xls(e) {
+    onNavItemClick(e);
+    changeContent("export_html");
+}
+
 function createXMLHttpRequest() {
     var xml_request;
     if (window.XMLHttpRequest) {

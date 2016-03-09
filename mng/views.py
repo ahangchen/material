@@ -10,6 +10,7 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from bck.backup_util import backup_db
+from mng.export import export_xls
 from mng.models import Apply, KV, Notice
 
 logger = logging.getLogger(__name__)
@@ -329,7 +330,7 @@ def get_notice(request, page_num):
     notices = Notice.objects.order_by("-id")
     if notices.count() <= 0:
         return HttpResponse("暂时没有通知")
-    limit = 8
+    limit = 5
     paginator = Paginator(notices, limit)
     page = page_num
     try:
@@ -506,3 +507,19 @@ def view(request, year, month, day):
 def backup(request):
     backup_db()
     return HttpResponse("success")
+
+
+def export(request):
+    start_year = int(request.POST['start_year'])
+    start_month = int(request.POST['start_month'])
+    start_day = int(request.POST['start_day'])
+
+    end_year = int(request.POST['end_year'])
+    end_month = int(request.POST['end_month'])
+    end_day = int(request.POST['end_day'])
+
+    return export_xls(date(start_year, start_month, start_day), date(end_year, end_month, end_day))
+
+
+def export_html(request):
+    return render(request, 'mng/export.html', {})

@@ -20,4 +20,6 @@ urlpatterns = [
     url(r'^(?P<notice_id>[0-9]+)/modify_notice/$', views.modify_notice, name='modify_notice'),
     url(r'^(?P<notice_id>[0-9]+)/remove_notice/$', views.remove_notice, name='remove_notice'),
     url(r'^backup/$', views.backup, name='backup'),
+    url(r'^export/$', views.export, name='export'),
+    url(r'^export_html/$', views.export_html, name='export_html'),
 ]

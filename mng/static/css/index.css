@@ -102,11 +102,12 @@
     background-color: white;
     position: relative;
     padding-top: 0;
+    padding-bottom: 40px;
     box-shadow: -5px 0 15px #aaa;
 }
 
 .notice_head {
-    width:100%;
+    width: 100%;
     position: absolute; /*固定在上面*/
     bottom: 0;
     left: 0;

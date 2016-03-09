@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计导出</title>
+    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/setting.css">
+    <style>
+        div {
+            padding: 5px;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    选择导出时间段
+</div>
+<form action="{% url 'mng:export' %}" method="post">
+    {% csrf_token %}
+    <div>
+        起始时间 <input type="text" id="start_year" name="start_year"><label for="start_year">年</label>
+        <input type="text" id="start_month" name="start_month"><label for="start_month">月</label>
+        <input type="text" id="start_day" name="start_day"><label for="start_day">日</label>
+    </div>
+    <div>
+        结束时间 <input type="text" id="end_year" name="end_year"><label for="end_year">年</label>
+        <input type="text" id="end_month" name="end_month"><label for="end_month">月</label>
+        <input type="text" id="end_day" name="end_day"><label for="end_day">日</label>
+    </div>
+    <div>
+        <button type="submit">导出</button>
+    </div>
+</form>
+
+</body>
+</html>
