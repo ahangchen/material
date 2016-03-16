@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^apply/$', views.apply, name='apply'),
     url(r'^(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/view/$', views.view, name='view'),
     url(r'^faq/$', views.faq, name='faq'),
-    url(r'^download/$', views.join, name='download'),
+    url(r'^download/$', views.download, name='download'),
     url(r'^setting/$', views.setting, name='setting'),
     url(r'^publish/$', views.publish, name='publish'),
     url(r'^save_apply/$', views.save_apply, name='save_apply'),
@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^backup/$', views.backup, name='backup'),
     url(r'^export/$', views.export, name='export'),
     url(r'^export_html/$', views.export_html, name='export_html'),
+    url(r'upload/$', views.upload, name='upload'),
+    url(r'^(?P<doc_id>[0-9]+)/rm_doc/$', views.rm_doc, name='rm_doc'),
 ]

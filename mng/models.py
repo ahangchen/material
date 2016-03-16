@@ -43,3 +43,7 @@ class KV(models.Model):
 class Notice(models.Model):
     content = models.CharField(max_length=300)
 
+
+class ApplyFile(models.Model):
+    name = models.CharField(max_length=100)
+    path = models.CharField(max_length=300)

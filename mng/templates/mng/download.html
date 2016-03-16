@@ -9,77 +9,33 @@
 </head>
 <body>
 <div class="main">
+    {% for doc in docs %}
+        <div class="doc-wrap">
+            <div class="doc-name">
+                <a href="{{ doc.path }}">{{ doc.name }}</a>
+            </div>
+            <div class="doc-bottom">
+                <a href="#" onclick="validateRemove({{ doc.id }})">删除</a>
+            </div>
+        </div>
+    {% endfor %}
+
 
     <div class="doc-wrap">
-        <div class="doc-name">
-            大学城校区<br/>音乐厅、会议场馆申用表
-        </div>
-        <div class="doc-bottom">
-            <a href="../../static/doc/大学城校区音乐厅、会议场馆申用表.doc">下载</a>
-        </div>
-    </div>
+        <form enctype="multipart/form-data" method="post" action="{% url 'mng:upload'%}" onsubmit="return checkUpload()">
+            {% csrf_token %}
 
-    <div class="doc-wrap">
-        <div class="doc-name">
-            大学城校区<br/>横幅悬挂标贴
-        </div>
-        <div class="doc-bottom">
-            <a href="../../static/doc/华南理工大学横幅悬挂.doc">下载</a>
-        </div>
-    </div>
+            <div class="doc-name">
+                <a href="#" class="file">
+                    <input type="file" name="file" id="upload_file" onchange="changeFileName(this)"/>点击选择文件
+                    <input type="text" name="name" style="display: none" value="选择文件"/>
+                </a>
+            </div>
 
-    <div class="doc-wrap">
-        <div class="doc-name">
-            大学城校区<br/>教室借用申请表
-        </div>
-        <div class="doc-bottom">
-            <a href="../../static/doc/华南理工大学南校区教室借用申请表.doc">下载</a>
-        </div>
-    </div>
-
-    <div class="doc-wrap">
-        <div class="doc-name">
-            校园文化<br/>活动申请表
-        </div>
-        <div class="doc-bottom">
-            <a href="../../static/doc/活动申请表.doc">下载</a>
-        </div>
-    </div>
-
-    <div class="doc-wrap">
-        <div class="doc-name">
-            宿舍活动室申请表
-        </div>
-        <div class="doc-bottom">
-            <a href="../../static/doc/活动室申请表.doc">下载</a>
-        </div>
-    </div>
-
-    <div class="doc-wrap">
-        <div class="doc-name">
-            物资申请表
-        </div>
-        <div class="doc-bottom">
-            <a href="../../static/doc/物资申请表.doc">下载</a>
-        </div>
-    </div>
-
-    <div class="doc-wrap">
-        <div class="doc-name">
-            海报小标签
-        </div>
-        <div class="doc-bottom">
-            <a href="../../static/doc/小标签.doc">下载</a>
-        </div>
-    </div>
-
-    <div class="doc-wrap">
-        <div class="doc-name">
-            MORE
-        </div>
-        <div class="doc-bottom">
-            <a href="#">下载</a>
-        </div>
+            <div class="doc-bottom">
+                <button class="click_label" type="submit">上传</button>
+            </div>
+        </form>
     </div>
 
 </div>

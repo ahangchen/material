@@ -1,6 +1,7 @@
 import calendar
 import logging
 import math
+import os
 from datetime import date, timedelta
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
@@ -11,7 +12,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from bck.backup_util import backup_db
 from mng.export import export_xls
-from mng.models import Apply, KV, Notice
+from mng.models import Apply, KV, Notice, ApplyFile
 
 logger = logging.getLogger(__name__)
 
@@ -36,8 +37,9 @@ def faq(request):
     return render(request, 'mng/faq.html', context)
 
 
-def join(request):
-    context = {}
+def download(request):
+    docs = ApplyFile.objects.all()
+    context = {'docs': docs}
     return render(request, 'mng/download.html', context)
 
 
@@ -279,7 +281,8 @@ def save_modify(request, apply_id):
     invalid_applies = check_apply_info(int(desk_num) - int(apply_rcd.desk_num), int(tent_num) - int(apply_rcd.tent_num),
                                        int(umbrella_num) - int(apply_rcd.umbrella_num),
                                        int(red_num) - int(apply_rcd.red_num), int(cloth_num) - int(apply_rcd.cloth_num),
-                                       int(loud_num) - int(apply_rcd.loud_num), int(sound_num) - int(apply_rcd.sound_num),
+                                       int(loud_num) - int(apply_rcd.loud_num),
+                                       int(sound_num) - int(apply_rcd.sound_num),
                                        int(projector) - int(apply_rcd.projector), apply_dates)
     if len(invalid_applies) <= 0:
         apply_rcd.act_name = act_name
@@ -357,7 +360,8 @@ def apply_remove(request, apply_id):
     apply_rcd.delete()
     today = date.today()
     return HttpResponse("<script>alert(\"已删除\");"
-                        "location.href=\"../../"+str(today.year)+"/"+str(today.month)+"/"+str(today.day)+"/"+"view\";</script>")
+                        "location.href=\"../../" + str(today.year) + "/" + str(today.month) + "/" + str(
+        today.day) + "/" + "view\";</script>")
 
 
 def save_setting(request):
@@ -523,3 +527,28 @@ def export(request):
 
 def export_html(request):
     return render(request, 'mng/export.html', {})
+
+
+def upload(request):
+    name = request.POST['name']
+    path = '../../static/doc/%s' % name
+
+    f = request.FILES['file']
+    with open('mng/' + path.replace('../../', ''), 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+
+    docs = ApplyFile.objects.all()
+
+    doc = ApplyFile(name=name, path=path)
+    doc.save()
+    return render(request, 'mng/download.html', {'docs': docs})
+
+
+def rm_doc(request, doc_id):
+    doc = get_object_or_404(ApplyFile, pk=doc_id)
+    path = doc.path
+    os.remove('mng/' + path.replace('../../', ''))
+    doc.delete()
+    docs = ApplyFile.objects.all()
+    return render(request, 'mng/download.html', {'docs': docs})
