@@ -136,7 +136,7 @@ def check_info(material_num, material_name, apply_dates):
                 elif material_name == 'umbrella_num':
                     invalid_name = '雨伞'
                 elif material_name == 'red_num':
-                    invalid_name = '红布'
+                    invalid_name = '相机'
                 elif material_name == 'cloth_num':
                     invalid_name = '展架'
                 elif material_name == 'loud_num':
