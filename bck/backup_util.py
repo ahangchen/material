@@ -38,7 +38,6 @@ def validate_db_change(db_path, validate_interval):
 
 
 def backup_db():
-    os.system('ls')
     send_163_mail_attach('13660106752', 'xuegongban118',
                          '13660106752@163.com', '13660106752@163.com', 'db_bck', 'db.sqlite3')
 
