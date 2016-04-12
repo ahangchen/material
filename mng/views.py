@@ -534,7 +534,7 @@ def upload(request):
     path = '../../static/doc/%s' % name
 
     f = request.FILES['file']
-    with open('mng/' + path.replace('../../', ''), 'wb+') as destination:
+    with open(path.replace('../..', '../mng/'), 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -548,7 +548,8 @@ def upload(request):
 def rm_doc(request, doc_id):
     doc = get_object_or_404(ApplyFile, pk=doc_id)
     path = doc.path
-    os.remove('mng/' + path.replace('../../', ''))
+    print(os.path.abspath('.'))
+    os.remove((path.replace('../..', '../mng/')))
     doc.delete()
     docs = ApplyFile.objects.all()
     return render(request, 'mng/download.html', {'docs': docs})
