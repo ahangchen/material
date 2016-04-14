@@ -140,7 +140,7 @@ def check_info(material_num, material_name, apply_dates):
                 elif material_name == 'cloth_num':
                     invalid_name = '展架'
                 elif material_name == 'loud_num':
-                    invalid_name = '扩音器'
+                    invalid_name = '麦克风'
                 elif material_name == 'sound_num':
                     invalid_name = '音响'
                 elif material_name == 'projector':
