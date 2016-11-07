@@ -201,3 +201,4 @@ def query_when(year, month, day):
                'sound_sum': sound_sum, 'sound_left': sound_left,
                'project_sum': projector_sum, 'projector_left': projector_left
                }
+    return context

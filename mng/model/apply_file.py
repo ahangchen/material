@@ -11,7 +11,7 @@ def all_files():
 
 def upload_file(name, f):
     path = '../../static/doc/%s' % name
-    with open(path.replace('../..', '../mng/'), 'wb+') as destination:
+    with open(path.replace('../..', 'mng'), 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
 
@@ -23,5 +23,5 @@ def remove_file(doc_id):
     doc = get_object_or_404(ApplyFile, pk=doc_id)
     path = doc.path
     print(os.path.abspath('.'))
-    os.remove((path.replace('../..', '../mng/')))
+    os.remove((path.replace('../..', 'mng')))
     doc.delete()
