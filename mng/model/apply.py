@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404
 
 from mng.models import KV, Apply
 from mng.utils.mt_date import add_months, gen_calendar
+from mng.utils.network import post_json
+from mng.utils.sync import new_thread, run_in_background
 
 
 def check_info(material_num, material_name, apply_dates):
@@ -202,3 +204,56 @@ def query_when(year, month, day):
                'project_sum': projector_sum, 'projector_left': projector_left
                }
     return context
+
+
+insert_apply_url = "http://114.215.146.135:8080/oa/record/saveRecord"
+remove_apply_url = "http://114.215.146.135:8080/oa/record/deleteRecord"
+
+
+def oa_new_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date,
+                 end_date):
+    record_dict = {
+        "eventName": act_name,
+        "header": applicant,
+        "phone": tel,
+        "Unit": apply_org,
+        "startDate": "%4d-%2d-%2d" % (start_date.year, start_date.month, start_date.day),
+        "endDate": "%4d-%2d-%2d" % (end_date.year, end_date.month, end_date.day),
+        "materials": "%d,%d,%d,%d" % (desk_num, tent_num, umbrella_num, cloth_num)
+    }
+    ret = post_json({'TempRecord': record_dict}, insert_apply_url)
+    if ret['ResultBean']['isSuccess'] is not True:
+        print('async apply failed')
+        print(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date,
+              end_date)
+
+
+def oa_rm_apply(act_name, tel):
+    record_dict = {
+        "eventName": act_name,
+        "phone": tel
+    }
+    ret = post_json({'TempRecord': record_dict}, remove_apply_url)
+    if ret['ResultBean']['isSuccess'] is not True:
+        print('async remove failed')
+        return False
+    else:
+        return True
+
+
+def oa_modify_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date):
+    ret = oa_rm_apply(act_name, tel)
+    if ret:
+        oa_new_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date)
+
+
+def async_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date):
+    run_in_background(oa_new_apply, act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date)
+
+
+def async_rm_apply(act_name, tel):
+    run_in_background(oa_rm_apply, act_name, tel)
+
+
+def aysn_modify(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date):
+    run_in_background(oa_modify_apply, act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date)

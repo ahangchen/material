@@ -114,6 +114,7 @@ def save_apply(request):
     apply_id, ret, invalid_applies = insert_apply(act_name, applicant, apply_org, tent_num, tel, assistant,
                                                   desk_num, chair_num, umbrella_num, red_num, cloth_num, loud_num,
                                                   sound_num, projector, apply_dates)
+    # todo async insert
     if ret:
         return apply_success(request, apply_id)
     else:
@@ -155,6 +156,7 @@ def save_modify(request, apply_id):
                             desk_num, chair_num, umbrella_num, red_num, cloth_num, loud_num, sound_num, projector,
                             apply_dates)
     if len(invalids) <= 0:
+        # todo async modify
         return apply_success(request, apply_id)
     else:
         return render(request, 'mng/apply_failed.html', {'fails': invalids})
@@ -205,6 +207,7 @@ def apply_modify(request, apply_id):
 
 def apply_remove(request, apply_id):
     remove_apply(apply_id)
+    # todo async remove
     today = date.today()
     return HttpResponse("<script>alert(\"已删除\");"
                         "location.href=\"../../" + str(today.year) + "/" + str(today.month) + "/" + str(today.day) +
