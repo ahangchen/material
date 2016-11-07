@@ -30,9 +30,9 @@ def export_xls(start_date, end_date):
     ws.write(0, 7, '桌子', style_title)
     ws.write(0, 8, '帐篷', style_title)
     ws.write(0, 9, '太阳伞', style_title)
-    ws.write(0, 10, '红布', style_title)
+    ws.write(0, 10, '相机', style_title)
     ws.write(0, 11, '展架', style_title)
-    ws.write(0, 12, '扩音器', style_title)
+    ws.write(0, 12, '麦克风', style_title)
     ws.write(0, 13, '投影仪', style_title)
     ws.write(0, 14, '音响', style_title)
     j = 1
