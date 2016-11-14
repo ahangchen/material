@@ -10,7 +10,11 @@ def post_json(json_dict, post_url):
     json_data = json.dumps(json_dict)
     json_byte = json_data.encode('utf-8')  # needs to be bytes
     req.add_header('Content-Length', len(json_byte))
-    return json.loads(urllib.request.urlopen(req, json_byte).read().decode())
+    ret = urllib.request.urlopen(req, json_byte).read().decode()
+    print(ret)
+    return json.loads(ret)
 
 if __name__ == '__main__':
-    print(post_json('', 'http://110.64.69.101:8081/team/info/?tid=1'))
+    # print(post_json('', 'http://110.64.69.101:8081/team/info/?tid=1'))
+    print(post_json('', 'http://114.215.146.135:8080/oa/record/getRecordByPage.do'))
+
