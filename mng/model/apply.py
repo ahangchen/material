@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 
 from mng.models import KV, Apply
 from mng.utils.mt_date import add_months, gen_calendar
-from mng.utils.network import post_json
+from mng.utils.network import post_json, post
 from mng.utils.sync import new_thread, run_in_background
 
 
@@ -113,7 +113,7 @@ def modify_apply(apply_id, act_name, applicant, apply_org, tent_num, tel, assist
 def remove_apply(apply_id):
     apply_rcd = get_object_or_404(Apply, pk=apply_id)
     apply_rcd.delete()
-
+    return apply_rcd.act_name, apply_rcd.tel
 
 def query_when(year, month, day):
     applies = Apply.objects.filter(rap__year=year, rap__month=month, rap__day=day)
@@ -206,54 +206,54 @@ def query_when(year, month, day):
     return context
 
 
-insert_apply_url = "http://114.215.146.135:8080/oa/record/saveRecord"
-remove_apply_url = "http://114.215.146.135:8080/oa/record/deleteRecord"
+# 对接校会oa系统同步需求
+URL_HEADER = 'http://114.215.146.135/record/'
+URL_SAVE = URL_HEADER + 'saveRecord.do'
+URL_REMOVE = URL_HEADER + 'deleteRecord.do'
 
 
-def oa_new_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date,
-                 end_date):
-    record_dict = {
-        "eventName": act_name,
-        "header": applicant,
-        "phone": tel,
-        "Unit": apply_org,
-        "startDate": "%4d-%2d-%2d" % (start_date.year, start_date.month, start_date.day),
-        "endDate": "%4d-%2d-%2d" % (end_date.year, end_date.month, end_date.day),
-        "materials": "%d,%d,%d,%d" % (desk_num, tent_num, umbrella_num, cloth_num)
-    }
-    ret = post_json({'TempRecord': record_dict}, insert_apply_url)
-    if ret['ResultBean']['isSuccess'] is not True:
-        print('async apply failed')
-        print(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date,
-              end_date)
+def save_record(event_name, applicant, phone, org, start_year, start_month, start_day, end_year, end_month, end_day, desk_num, tent_num, umbrella_num, exhibition):
+    start_date = "%d-%02d-%02d" % (start_year, start_month, start_day)
+    end_date = "%d-%02d-%02d" % (end_year, end_month, end_day)
+    post(URL_SAVE, {
+            "eventName": event_name,
+            "header": applicant,
+            "phone": phone,
+            "Unit": org,
+            "startDate": start_date,
+            "endDate": end_date,
+            "materials": str(desk_num) + "," + str(tent_num) + "," + str(umbrella_num) + "," + str(exhibition)
+        })
 
 
-def oa_rm_apply(act_name, tel):
-    record_dict = {
-        "eventName": act_name,
-        "phone": tel
-    }
-    ret = post_json({'TempRecord': record_dict}, remove_apply_url)
-    if ret['ResultBean']['isSuccess'] is not True:
-        print('async remove failed')
-        return False
-    else:
-        return True
+def remove_record(event_name, phone):
+    post(URL_REMOVE, {
+        "eventName": event_name,
+        "phone": phone
+    })
 
 
-def oa_modify_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date):
-    ret = oa_rm_apply(act_name, tel)
-    if ret:
-        oa_new_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date)
+def modify_record(event_name, applicant, phone, org, start_year, start_month, start_day, end_year, end_month, end_day, desk_num, tent_num, umbrella_num, exhibition):
+    remove_record(event_name, phone)
+    save_record(event_name, applicant, phone, org, start_year, start_month, start_day, end_year, end_month, end_day, desk_num, tent_num, umbrella_num, exhibition)
 
 
-def async_apply(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date):
-    run_in_background(oa_new_apply, act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date)
+def async_apply(act_name, applicant, tel, apply_org,
+                      start_year, start_month, start_day, end_year, end_month, end_day,
+                desk_num, tent_num, umbrella_num, red_num):
+    run_in_background(save_record, act_name, applicant, tel, apply_org,
+                      int(start_year), int(start_month), int(start_day), int(end_year), int(end_month), int(end_day),
+                      desk_num, tent_num, umbrella_num, red_num)
 
 
 def async_rm_apply(act_name, tel):
-    run_in_background(oa_rm_apply, act_name, tel)
+    run_in_background(remove_record, act_name, tel)
 
 
-def aysn_modify(act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date):
-    run_in_background(oa_modify_apply, act_name, applicant, apply_org, tel, tent_num, desk_num, umbrella_num, red_num, cloth_num, start_date, end_date)
+def async_modify(act_name, applicant, tel, apply_org,
+                      start_year, start_month, start_day, end_year, end_month, end_day,
+                desk_num, tent_num, umbrella_num, red_num):
+    run_in_background(modify_record, act_name, applicant, tel, apply_org,
+                      start_year, start_month, start_day, end_year, end_month, end_day, desk_num, tent_num, umbrella_num, red_num)
+
+

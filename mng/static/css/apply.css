@@ -108,6 +108,8 @@ select {
     float: right;
 
     box-shadow: 0 0 8px #732;
+    /*取消周模式*/
+    display: none;
 
     font-size: 20px;
     color: white;
