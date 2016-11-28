@@ -34,8 +34,6 @@ def post(url, json_dict):
 if __name__ == '__main__':
     # save_record('某活动', '申请人', '10086', 'zuzhi', 2016, 1, 1, 2016, 1, 2, 1, 2, 3, 4)
     # modify_record('某活动', '申请人', '10086', 'zuzhi', 2016, 1, 1, 2016, 1, 3, 1, 2, 3, 4)
-
+    pass
     # remove_record('某活动', '10086')
     # get('http://114.215.146.135:8080/oa/record/getRecordByPage.do')
-    run_in_background(save_record, 'huod', 'shenqingren', '39380123', 'xgb', 2016, 11, 12, 2016, 11, 13, 2, 3, 4, 5)
-    time.sleep(1)
