@@ -78,7 +78,8 @@ function createXMLHttpRequest() {
 
 window.onbeforeunload = function () {
     var xml_request = createXMLHttpRequest();
-    var url = "backup";
+    var url_header = 'http://' + window.location.host + '/';
+    var url = url_header + "backup";
     xml_request.open("GET", url, true);// 异步处理返回
     xml_request.setRequestHeader("Content-Type",
         "application/x-www-form-urlencoded;");
