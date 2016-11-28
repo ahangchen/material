@@ -9,11 +9,13 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here.
 from bck.backup_util import backup_db
 from mng.export import export_xls
-from mng.model.apply import insert_apply, modify_apply, remove_apply, query_when
+from mng.model.apply import insert_apply, modify_apply, remove_apply, query_when, async_apply, async_modify, \
+    async_rm_apply
 from mng.model.apply_file import all_files, upload_file, remove_file
 from mng.model.notice import insert_notice, delete_notice, update_notice, latest_notices
 from mng.model.sysset import kvs, zero_date, save_settings
 from mng.models import Apply
+from mng.utils.sync import run_in_background
 
 logger = logging.getLogger(__name__)
 
@@ -114,7 +116,8 @@ def save_apply(request):
     apply_id, ret, invalid_applies = insert_apply(act_name, applicant, apply_org, tent_num, tel, assistant,
                                                   desk_num, chair_num, umbrella_num, red_num, cloth_num, loud_num,
                                                   sound_num, projector, apply_dates)
-    # todo async insert
+    async_apply(act_name, applicant, tel, apply_org,
+                      start_year, start_month, start_day, end_year, end_month, end_day, desk_num, tent_num, umbrella_num, red_num)
     if ret:
         return apply_success(request, apply_id)
     else:
@@ -155,8 +158,16 @@ def save_modify(request, apply_id):
     invalids = modify_apply(apply_id, act_name, applicant, apply_org, tent_num, tel, assistant,
                             desk_num, chair_num, umbrella_num, red_num, cloth_num, loud_num, sound_num, projector,
                             apply_dates)
+    start_date = apply_dates[0]
+    end_date = apply_dates[-1]
+    start_year = start_date.year
+    start_month = start_date.month
+    start_day = start_date.day
+    end_year = end_date.year
+    end_month = end_date.month
+    end_day = end_date.day
     if len(invalids) <= 0:
-        # todo async modify
+        async_modify(act_name, applicant, tel, apply_org, start_year, start_month, start_day, end_year, end_month, end_day, desk_num, tent_num, umbrella_num, red_num)
         return apply_success(request, apply_id)
     else:
         return render(request, 'mng/apply_failed.html', {'fails': invalids})
@@ -206,8 +217,8 @@ def apply_modify(request, apply_id):
 
 
 def apply_remove(request, apply_id):
-    remove_apply(apply_id)
-    # todo async remove
+    act_name, tel = remove_apply(apply_id)
+    async_rm_apply(act_name, tel)
     today = date.today()
     return HttpResponse("<script>alert(\"已删除\");"
                         "location.href=\"../../" + str(today.year) + "/" + str(today.month) + "/" + str(today.day) +

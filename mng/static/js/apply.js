@@ -102,6 +102,7 @@ function errorLight(ipt) {
 
 function validateDate(year, month, day) {
 	return true;
+    // 存在浏览器兼容性问题
     var date = new Date(year, month - 1, day);
     var strs = date.toLocaleDateString().split('/');
     return strs[0] == year && strs[1] == month && strs[2] == day;
