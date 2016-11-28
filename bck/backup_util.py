@@ -4,8 +4,6 @@ import time
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-from mng.utils.file_helper import safe_rm, cp
-
 
 def send_163_mail_attach(user, pwd, to_addr, from_addr, subject, attach_path):
     # 创建一个带附件的实例
@@ -41,8 +39,12 @@ def validate_db_change(db_path, validate_interval):
 
 def backup_db():
     db_path = 'db.sqlite3'
-    safe_rm(db_path)
-    cp(db_path, 'dbsqlite3')
+#    db_zip_path = 'db.sqlite3.tar'
+#    safe_rm(db_zip_path)
+#    tar = tarfile.open(db_zip_path, 'w')
+#    tar.add(db_path)
+#    tar.close()
+#    cp(db_zip_path, '0')
     send_163_mail_attach('13660106752', 'xuegongban118',
-                         'scuttuangongwei@163.com', '13660106752@163.com', 'db_bck', 'dbsqlite3')
+                         '13660106752@163.com', '13660106752@163.com', 'db_bck', db_path)
 
