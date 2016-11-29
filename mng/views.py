@@ -1,6 +1,6 @@
 import logging
 import math
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
@@ -251,6 +251,11 @@ def view(request, year, month, day):
 def view_mobile(request, year, month, day):
     context = query_when(year, month, day)
     return render(request, 'mng/view_mobile.html', context)
+
+
+def view_mobile_today(request):
+    today = datetime.today()
+    return view_mobile(request, today.year, today.month, today.day)
 
 
 def backup(request):
