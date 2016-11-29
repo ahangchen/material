@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>物资一览</title>
+    <link type="text/css" rel="stylesheet" href="../../../../static/css/base.css">
+    <link type="text/css" rel="stylesheet" href="../../../../static/css/view.css">
+    <script src="../../../../static/js/view_mobile.js" type="text/javascript"></script>
+</head>
+<body>
+<div>
+    <div class="main-mobile">
+        <div id="cur_date" style="display: none;">{{ cur_year }}-{{ cur_month }}-{{ cur_day }}</div>
+        <table style="height: 230px; width: 230px" id="calendar">
+            <tr>
+                <td><a class="click_label" href="../../../../{{ pre_year }}/{{ pre_month }}/1/view_mobile">&lt</a>
+                </td>
+                <td colspan="5" style="color: orange;">{{ cur_month }}月</td>
+                <td><a class="click_label" href="../../../../{{ next_year }}/{{ next_month }}/1/view_mobile">&gt</a>
+                </td>
+            </tr>
+            {% for week in dates %}
+                <tr>
+                    {% for date in week %}
+                        <td>
+                            <a href="#" id="{% for item in date %}{{ item }}-{% endfor %}"
+                               onclick="onDateClick(this)"></a>
+                        </td>
+                    {% endfor %}
+
+                </tr>
+            {% endfor %}
+
+        </table>
+
+        <table style="height: 230px; width: 316px;">
+            <tr>
+                <td class="table_title">物品</td>
+                <td class="table_title">余量</td>
+                <td class="table_title">已借</td>
+                <td></td>
+                <td class="table_title">物品</td>
+                <td class="table_title">余量</td>
+                <td class="table_title">已借</td>
+            </tr>
+            <tr>
+                <td>胶凳</td>
+                <td>{{ chair_left }}</td>
+                <td>{{ chair_sum }}</td>
+                <td></td>
+                <td>桌子</td>
+                <td>{{ desk_left }}</td>
+                <td>{{ desk_sum }}</td>
+            </tr>
+            <tr>
+                <td>帐篷</td>
+                <td>{{ tent_left }}</td>
+                <td>{{ tent_sum }}</td>
+                <td></td>
+                <td>太阳伞</td>
+                <td>{{ umbrella_left }}</td>
+                <td>{{ umbrella_sum }}</td>
+            </tr>
+            <tr>
+                <td>相机</td>
+                <td>{{ red_left }}</td>
+                <td>{{ red_sum }}</td>
+                <td></td>
+                <td>展架</td>
+                <td>{{ cloth_left }}</td>
+                <td>{{ cloth_sum }}</td>
+            </tr>
+            <tr>
+                <td>麦克风</td>
+                <td>{{ loud_left }}</td>
+                <td>{{ loud_sum }}</td>
+                <td></td>
+                <td>音响</td>
+                <td>{{ sound_left }}</td>
+                <td>{{ sound_sum }}</td>
+            </tr>
+            <tr>
+                <td>投影仪</td>
+                <td>{{ projector_left }}</td>
+                <td>{{ project_sum }}</td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>

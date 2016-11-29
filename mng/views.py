@@ -248,6 +248,11 @@ def view(request, year, month, day):
     return render(request, 'mng/view.html', context)
 
 
+def view_mobile(request, year, month, day):
+    context = query_when(year, month, day)
+    return render(request, 'mng/view_mobile.html', context)
+
+
 def backup(request):
     backup_db()
     return HttpResponse("success")

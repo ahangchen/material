@@ -18,6 +18,12 @@ td {
     width: 760px;
     margin: 10px auto;
 }
+
+.main-mobile {
+    width: 100%;
+    margin: 10px auto;
+}
+
 .table_title {
     color: darkorange;
 }
