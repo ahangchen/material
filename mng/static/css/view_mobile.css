@@ -3,7 +3,7 @@ table {
     width: 90%;
     background-color: white;
     box-shadow: 0 0 3rem #aaa;
-    float: left;
+    /*float: left;*/
 
     text-align: center;
     padding: 1rem;
