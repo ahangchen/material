@@ -2,11 +2,11 @@ table {
     margin: 20px 5% 20px 5%;
     width: 90%;
     background-color: white;
-    box-shadow: 0 0 0.3rem #aaa;
+    box-shadow: 0 0 1rem #aaa;
     float: left;
 
     text-align: center;
-    padding: 0.2rem;
+    padding: 1rem;
 }
 
 table a {
