@@ -2,13 +2,15 @@ table {
     margin: 20px 5% 20px 5%;
     width: 90%;
     background-color: white;
-    box-shadow: 0 0 1rem #aaa;
+    box-shadow: 0 0 3rem #aaa;
     float: left;
 
     text-align: center;
-    padding: 1rem;
+    padding: 3rem;
 }
-
+.bg-mobile {
+  background-color: whitesmoke;
+}
 table a {
     font-size: 5rem;
 }
@@ -16,7 +18,7 @@ table a {
 td {
     color: #666;
     font-size: 5rem;
-    padding: 5px;
+    padding: 1rem;
 }
 
 .click_label {
