@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>校园活动物资管理系统</title>
-    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
-    <link type="text/css" rel="stylesheet" href="../../static/css/index.css">
-    <script src="../../static/js/index.js" type="text/javascript"></script>
+    {% load staticfiles %}
+     <link type="text/css" rel="stylesheet" href="{% static "css/base.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "css/index.css" %}">
+    <script src="{% static "js/index.js" %}" type="text/javascript"></script>
 </head>
 <body>
 <div class="v-bar">
     <div class="v-bar-logo">
-        <img src="../../static/img/xgb.jpg" alt="学工办" title="团工委"/>
+        <img src="{% static "img/xgb.jpg" %}" alt="学工办" title="团工委"/>
         <div>学工办·团工委</div>
     </div>
     <div class="v-bar-nav">

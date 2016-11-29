@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>常用文档</title>
-    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
-    <link type="text/css" rel="stylesheet" href="../../static/css/download.css">
-    <script src="../../static/js/download.js" type="text/javascript"></script>
+    {% load staticfiles %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/base.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "css/download.css" %}">
+    <script src="{% static "js/download.js" %}" type="text/javascript"></script>
 </head>
 <body>
 <div class="main">

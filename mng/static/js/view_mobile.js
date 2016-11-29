@@ -17,6 +17,7 @@ var cur_date_items;
 function onDateClick(elem) {
     cur_date_items = elem.id.split("_");
     var cur_date = document.getElementById(cur_date_items[0] + "_" + cur_date_items[1] + "_" + cur_date_items[2]);
+    window.location.href = "../../../../" + cur_date_items[0] + "/" + cur_date_items[1] + "/" + cur_date_items[2] + "/view_mobile";
     cur_date.style.background = "#fff";
     elem.style.background = "#fee";
 }
@@ -42,7 +43,7 @@ window.onload = function () {
         td_date_items = date_a.id.split("-");
         date_a.id = td_date_items[0] + "_" + td_date_items[1] + "_" + td_date_items[2];
         date_a.innerHTML = td_date_items[2];
-        date_a.href = "../../../../" + date_a.id.replace(new RegExp("_", "gm"), "/") + "/view_mobile";
+        // date_a.href = "../../../../" + date_a.id.replace(new RegExp("_", "gm"), "/") + "/view_mobile";
         if (cur_date_items[0] == td_date_items[0] && cur_date_items[1] == td_date_items[1] && cur_date_items[2] == td_date_items[2]) {
             date_td.style.background = "#fee";
         }

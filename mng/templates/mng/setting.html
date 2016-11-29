@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>设置</title>
-    <link type="text/css" rel="stylesheet" href="../../static/css/base.css">
-    <link type="text/css" rel="stylesheet" href="../../static/css/setting.css">
-    <script src="../../static/js/setting.js" type="text/javascript"></script>
+    {% load staticfiles %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/base.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "css/setting.css" %}">
+    <script src="{% static "js/setting.js" %}" type="text/javascript"></script>
 </head>
 <body>
 <div>
