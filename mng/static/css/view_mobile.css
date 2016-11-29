@@ -10,17 +10,17 @@ table {
 }
 
 table a {
-    font-size: 2.5rem;
+    font-size: 5rem;
 }
 
 td {
     color: #666;
-    font-size: 2.5rem;
+    font-size: 5rem;
     padding: 5px;
 }
 
 .click_label {
-    font-size: 2.5rem;
+    font-size: 5rem;
 }
 .main {
     width: 760px;
