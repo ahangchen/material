@@ -20,7 +20,7 @@
 
 
 label {
-    color: #335333;
+    color: darkslategray;
     font-size: 15px;
     margin: 5px 10px 0 10px;
 }
@@ -62,6 +62,12 @@ table {
 
 }
 
+.hint_wrap {
+    padding: 10px;
+    font-size: 14px;
+    color: #777;
+}
+
 .time_label {
     margin: 5px 2px 0 2px;
 }
@@ -90,7 +96,7 @@ select {
     background-color: white;
     border: 1px solid #ccc;
     font-size: 12px;
-    color: #335333;
+    color: lightslategrey;
 }
 
 .time_interval {

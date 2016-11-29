@@ -50,7 +50,7 @@ td {
     text-align: center;
 }
 .td_divider {
-    border-bottom: solid darkseagreen 2px;
+    border-bottom: solid lightslategrey 2px;
     padding:0;
     height: 1px;
 }
