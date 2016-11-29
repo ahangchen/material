@@ -1,8 +1,8 @@
 table {
-    margin: 20px 5% 20px 5%;
+    margin: 3rem 5% 10rem 5%;
     width: 90%;
     background-color: white;
-    box-shadow: 0 0 1rem #aaa;
+    box-shadow: 0 0 3rem #aaa;
     float: left;
 
     text-align: center;
@@ -20,6 +20,7 @@ td {
 }
 
 .click_label {
+    margin-left: 3rem;
     font-size: 5rem;
 }
 .main {
