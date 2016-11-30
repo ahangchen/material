@@ -314,7 +314,7 @@ def login(request):
 
 
 def key_valid(request):
-    if request.POST['key'] == '39380123@xgb':
+    if request.POST['key'] == 'scuttuangongwei@163.com':
         request.session['legal'] = True
         return script('location.href="http://" + location.host')
     else:
