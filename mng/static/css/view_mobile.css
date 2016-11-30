@@ -4,11 +4,16 @@ table {
     background-color: white;
     box-shadow: 0 0 3rem #aaa;
     /*float: left;*/
-
     text-align: center;
-    padding: 1rem;
+    padding: 3rem;
 }
-
+.hint {
+    margin: 3rem;
+    font-size: 5rem;
+}
+.bg-mobile {
+  background-color: whitesmoke;
+}
 table a {
     font-size: 5rem;
 }
@@ -16,7 +21,7 @@ table a {
 td {
     color: #666;
     font-size: 5rem;
-    padding: 5px;
+    padding: 0.5rem;
 }
 
 .click_label {
