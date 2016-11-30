@@ -7,6 +7,10 @@ table {
     text-align: center;
     padding: 3rem;
 }
+.hint {
+    margin: 3rem;
+    font-size: 5rem;
+}
 .bg-mobile {
   background-color: whitesmoke;
 }
@@ -17,7 +21,7 @@ table a {
 td {
     color: #666;
     font-size: 5rem;
-    padding: 1rem;
+    padding: 0.5rem;
 }
 
 .click_label {
