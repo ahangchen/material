@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>校园活动物资管理系统</title>
+    {% load staticfiles %}
+     <link type="text/css" rel="stylesheet" href="{% static "css/base.css" %}">
+    <link type="text/css" rel="stylesheet" href="{% static "css/login.css" %}">
+</head>
+<body>
+<div class="container">
+    <form action="{% url 'mng:key_valid' %}" method="post">
+        {% csrf_token %}
+        <label class="click_label" for="key">Enter key to login:</label>
+        <div><input name="key" id="key"/></div>
+    </form>
+</div>
+</body>
+</html>

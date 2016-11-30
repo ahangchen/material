@@ -4,9 +4,11 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^key_valid/$', views.key_valid, name='key_valid'),
+    url(r'^login$', views.login, name='login'),
     url(r'^apply/$', views.apply, name='apply'),
     url(r'^(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/view/$', views.view, name='view'),
-    url(r'^(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/view_mobile/$', views.view_mobile, name='view_mobile'),
+    url(r'^(?P<year>[0-9]+)/(?P<month>[0-9]+)/(?P<day>[0-9]+)/material/$', views.view_mobile, name='view_mobile'),
     url(r'^view_today/$', views.view_mobile_today, name='view_today'),
     url(r'^faq/$', views.faq, name='faq'),
     url(r'^download/$', views.download, name='download'),

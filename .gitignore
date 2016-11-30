@@ -93,3 +93,4 @@ ENV/
 .idea/
 db.sqlite3
 bck/backup_util.py
+.pyc

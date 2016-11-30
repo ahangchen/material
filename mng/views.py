@@ -15,6 +15,7 @@ from mng.model.apply_file import all_files, upload_file, remove_file
 from mng.model.notice import insert_notice, delete_notice, update_notice, latest_notices
 from mng.model.sysset import kvs, zero_date, save_settings
 from mng.models import Apply
+from mng.utils.js import script
 from mng.utils.sync import run_in_background
 
 logger = logging.getLogger(__name__)
@@ -22,33 +23,45 @@ logger = logging.getLogger(__name__)
 
 def index(request):
     context = {}
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, 'mng/index.html', context)
 
 
 def apply(request):
     context = {}
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, 'mng/apply.html', context)
 
 
 def faq(request):
     context = {}
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, 'mng/faq.html', context)
 
 
 def download(request):
     docs = all_files()
     context = {'docs': docs}
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, 'mng/download.html', context)
 
 
 def publish(request):
     context = {}
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, 'mng/publish.html', context)
 
 
 def setting(request):
     context = kvs()
     print(context)
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, "mng/setting.html", context)
 
 
@@ -245,6 +258,8 @@ def save_setting(request):
 
 def view(request, year, month, day):
     context = query_when(year, month, day)
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, 'mng/view.html', context)
 
 
@@ -276,6 +291,8 @@ def export(request):
 
 
 def export_html(request):
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
     return render(request, 'mng/export.html', {})
 
 
@@ -290,3 +307,28 @@ def rm_doc(request, doc_id):
     remove_file(doc_id)
     docs = all_files()
     return render(request, 'mng/download.html', {'docs': docs})
+
+
+def login(request):
+    return render(request, 'mng/login.html', {})
+
+
+def key_valid(request):
+    if request.POST['key'] == '39380123@xgb':
+        request.session['legal'] = True
+        return script('location.href="http://" + location.host')
+    else:
+        return login(request)
+
+
+def session_valid(request):
+    try:
+        legal = request.session['legal']
+    except KeyError:
+        legal =False
+    return legal
+
+
+def need_login(request):
+    if not session_valid(request):
+        return script('location.href="http://" + location.host + "/login"')
