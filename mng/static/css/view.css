@@ -34,7 +34,7 @@ td {
 }
 
 .apply_detail {
-    border-top: dotted orange 2px;
+    border-top: solid #fee090 1px;
     box-shadow: none;
     font-size: 15px;
     clear: both;
