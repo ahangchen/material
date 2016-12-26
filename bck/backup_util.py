@@ -45,6 +45,6 @@ def backup_db():
 #    tar.add(db_path)
 #    tar.close()
 #    cp(db_zip_path, '0')
-    send_163_mail_attach('13660106752', 'xuegongban118',
+    send_163_mail_attach('13660106752', '***',
                          '13660106752@163.com', '13660106752@163.com', 'db_bck', db_path)
 
