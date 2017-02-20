@@ -10,4 +10,8 @@ function need_clean() {
     }
 }
 
+
+function confirm_clean() {
+    return confirm("会删除所有申请数据，确认删除吗？")
+}
 need_clean();

@@ -34,7 +34,7 @@
         <button type="submit">导出</button>
     </div>
 </form>
-<form action="{% url 'mng:clean' %}" method="post" onsubmit="confirm('会清空所有申请数据，确认要删除吗？')" id="clean_form">
+<form action="{% url 'mng:clean' %}" method="post" onsubmit="confirm_clean" id="clean_form">
     {% csrf_token %}
     <div>
         此提示每年8，9月，2，3月出现。<br/>
