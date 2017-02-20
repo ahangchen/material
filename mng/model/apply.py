@@ -260,5 +260,5 @@ def async_modify(act_name, applicant, tel, apply_org,
 
 
 def clean_record():
-    shutil.copyfile('db.sqlite', str(datetime.now()) + 'db.sqlite.bck')
+    shutil.copyfile('db.sqlite3', str(datetime.now()) + 'db.sqlite.bck')
     Apply.objects.all().delete()
