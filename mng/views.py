@@ -10,7 +10,7 @@ from django.shortcuts import render, get_object_or_404
 from bck.backup_util import backup_db
 from mng.export import export_xls
 from mng.model.apply import insert_apply, modify_apply, remove_apply, query_when, async_apply, async_modify, \
-    async_rm_apply
+    async_rm_apply, clean_record
 from mng.model.apply_file import all_files, upload_file, remove_file
 from mng.model.notice import insert_notice, delete_notice, update_notice, latest_notices
 from mng.model.sysset import kvs, zero_date, save_settings
@@ -332,3 +332,9 @@ def session_valid(request):
 def need_login(request):
     if not session_valid(request):
         return script('location.href="http://" + location.host + "/login"')
+
+
+def clean(request):
+    clean_record()
+    return render(request, 'mng/export.html', {})
+

@@ -1,12 +1,13 @@
-from datetime import date
+import shutil
+from datetime import date, datetime
 
 from django.db.models.aggregates import Sum
 from django.shortcuts import get_object_or_404
 
 from mng.models import KV, Apply
 from mng.utils.mt_date import add_months, gen_calendar
-from mng.utils.network import post_json, post
-from mng.utils.sync import new_thread, run_in_background
+from mng.utils.network import post
+from mng.utils.sync import run_in_background
 
 
 def check_info(material_num, material_name, apply_dates):
@@ -114,6 +115,7 @@ def remove_apply(apply_id):
     apply_rcd = get_object_or_404(Apply, pk=apply_id)
     apply_rcd.delete()
     return apply_rcd.act_name, apply_rcd.tel
+
 
 def query_when(year, month, day):
     applies = Apply.objects.filter(rap__year=year, rap__month=month, rap__day=day)
@@ -257,3 +259,6 @@ def async_modify(act_name, applicant, tel, apply_org,
                       start_year, start_month, start_day, end_year, end_month, end_day, desk_num, tent_num, umbrella_num, red_num)
 
 
+def clean_record():
+    shutil.copyfile('db.sqlite', str(datetime.now()) + 'db.sqlite.bck')
+    Apply.objects.all().delete()

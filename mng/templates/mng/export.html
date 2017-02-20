@@ -33,6 +33,24 @@
         <button type="submit">导出</button>
     </div>
 </form>
-
+<form action="{% url 'mng:clear' %}" method="post">
+    {% csrf_token %}
+    <div>
+        建议每学期导出一次数据保存，然后清理一次，避免数据积攒过多导致查询缓慢。
+    </div>
+    <div>
+        起始时间 <input type="text" id="start_year" name="start_year"><label for="start_year">年</label>
+        <input type="text" id="start_month" name="start_month"><label for="start_month">月</label>
+        <input type="text" id="start_day" name="start_day"><label for="start_day">日</label>
+    </div>
+    <div>
+        结束时间 <input type="text" id="end_year" name="end_year"><label for="end_year">年</label>
+        <input type="text" id="end_month" name="end_month"><label for="end_month">月</label>
+        <input type="text" id="end_day" name="end_day"><label for="end_day">日</label>
+    </div>
+    <div>
+        <button type="submit">清理</button>
+    </div>
+</form>
 </body>
 </html>

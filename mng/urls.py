@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^backup/$', views.backup, name='backup'),
     url(r'^export/$', views.export, name='export'),
     url(r'^export_html/$', views.export_html, name='export_html'),
+    url(r'^clean/$', views.clean, name='clean'),
     url(r'upload/$', views.upload, name='upload'),
     url(r'^(?P<doc_id>[0-9]+)/rm_doc/$', views.rm_doc, name='rm_doc'),
 ]
