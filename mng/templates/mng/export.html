@@ -6,6 +6,7 @@
     {% load staticfiles %}
      <link type="text/css" rel="stylesheet" href="{% static "css/base.css" %}">
     <link type="text/css" rel="stylesheet" href="{% static "css/setting.css" %}">
+    <script src="{% static "js/export.js" %}"></script>
     <style>
         div {
             padding: 5px;
@@ -33,9 +34,10 @@
         <button type="submit">导出</button>
     </div>
 </form>
-<form action="{% url 'mng:clean' %}" method="post">
+<form action="{% url 'mng:clean' %}" method="post" onsubmit="confirm('会清空所有申请数据，确认要删除吗？')" id="clean_form">
     {% csrf_token %}
     <div>
+        此提示每年8，9月，2，3月出现。<br/>
         建议每学期导出一次数据保存，然后清理一次，避免数据积攒过多导致查询缓慢。
     </div>
     <div>
