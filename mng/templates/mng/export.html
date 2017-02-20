@@ -6,7 +6,6 @@
     {% load staticfiles %}
      <link type="text/css" rel="stylesheet" href="{% static "css/base.css" %}">
     <link type="text/css" rel="stylesheet" href="{% static "css/setting.css" %}">
-    <script src="{% static "js/export.js" %}"></script>
     <style>
         div {
             padding: 5px;
@@ -35,17 +34,13 @@
     </div>
 </form>
 <div id = "clean_form">
-<form action="{% url 'mng:clean' %}" method="post" onsubmit="confirm_clean" >
-
-    {% csrf_token %}
-    <div>
-        此提示每年8，9月，2，3月出现。<br/>
-        建议每学期导出一次数据保存，然后清理一次，避免数据积攒过多导致查询缓慢。
-    </div>
-    <div>
-        <button type="submit">清理</button>
-    </div>
+<form action="{% url 'mng:clean' %}" method="post" onsubmit="return confirm_clean()" >
+{% csrf_token %}
+此提示每年8，9月，2，3月出现。<br/>
+建议每学期导出一次数据保存，然后清理一次，避免数据积攒过多导致查询缓慢。<br/><br/>
+<button type="submit">清理</button>
 </form>
 </div>
 </body>
+<script src="{% static "js/export.js" %}"></script>
 </html>
