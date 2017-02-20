@@ -10,7 +10,8 @@ def all_files():
 
 
 def upload_file(name, f):
-    path = '../../static/doc/%s' % name
+    file_cnt = ApplyFile.objects.count()
+    path = '../../static/doc/%d.%s' % (file_cnt, name.split('.')[1])
     with open(path.replace('../..', 'mng'), 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
