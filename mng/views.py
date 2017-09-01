@@ -59,7 +59,7 @@ def publish(request):
 
 def setting(request):
     context = kvs()
-    print(context)
+    # print(context)
     if not session_valid(request):
         return script('location.href="http://" + location.host + "/login"')
     return render(request, "mng/setting.html", context)
